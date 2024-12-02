@@ -45,9 +45,13 @@ export const Todo = () => {
         setCompleteTodos(newCompleteTodos);
     };
 
+    const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5
+
     return (
         <>
-            <InputTodo onChange={onChangeTodoText} onClick={onClickAddButton} todoText={todoText} />
+            <InputTodo onChange={onChangeTodoText} onClick={onClickAddButton} todoText={todoText} disabled={isMaxLimitIncompleteTodos} />
+            {isMaxLimitIncompleteTodos && (<p style={{color: "red"}}>みやんご:(</p>)}
+            
             <IncompleteTodos todos={incompleteTodos} onClickComplete={onClickCompleteButton} onClickDelete={onClickDeleteButton} />
             <CompleteTodos todos={completeTodos} onClickBack={onClickBackButton} />
         </>
