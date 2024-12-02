@@ -1,37 +1,41 @@
+import { useState } from "react";
 import "./styles.css";
 
 export const Todo = () => {
+    const [incompleteTodos, setIncompleteTodos] = useState(["TODO1", "TODO2"]);
+    const [completeTodos, setCompleteTodos] = useState(["TODOでした1", "TODOでした2"]);
     return (
         <>
-            <div>
+            <div className="input-area">
                 <input type="text" placeholder="TODOを入力" />
             </div>
-            <div>
-                <p>未完了のTODO</p>
+            <div className="incomplete-area">
+                <p className="title">未完了のTODO</p>
                 <ul>
-                    <li>
-                        <p>TODOです</p>
-                        <button>完了</button>
-                        <button>削除</button>
-                    </li>
-                    <li>
-                        <p>TODOです</p>
-                        <button>完了</button>
-                        <button>削除</button>
-                    </li>
+                    {incompleteTodos.map((todo) => 
+                        (
+                            <li key={todo}>
+                                <div className="list-row">
+                                    <p className="todo-item">{todo}</p>
+                                    <button>完了</button>
+                                    <button>削除</button>
+                                </div>
+                            </li>
+                        )
+                    )}
                 </ul>
             </div>
-            <div>
-                <p>完了のTODO</p>
+            <div className="complete-area">
+                <p className="title">完了のTODO</p>
                 <ul>
-                    <li>
-                        <p>TODOでした</p>
-                        <button>戻す</button>
-                    </li>
-                    <li>
-                        <p>TODOでした</p>
-                        <button>戻す</button>
-                    </li>
+                    {completeTodos.map((todo) => (
+                        <li key={todo}>
+                            <div className="list-row">
+                                <p className="todo-item">{todo}</p>
+                                <button>戻す</button>
+                            </div>
+                        </li>
+                    ))}
                 </ul></div>
         </>
     );
